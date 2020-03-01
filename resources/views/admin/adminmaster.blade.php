@@ -10,7 +10,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
-<div class="wrapper">
+<div class="wrapper" id="app">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -178,10 +178,10 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <router-link class="nav-link" to="/vehicle_list">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Vehicle List</p>
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
                 <a href="../../index3.html" class="nav-link">
@@ -268,7 +268,7 @@
           </div>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+            <router-view></router-view>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -290,6 +290,7 @@
     <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
     reserved.
   </footer>
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
