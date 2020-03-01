@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class vehicle extends Model
+class Vehicle extends Model
 {
     //
     public function type(){
-        return $this->belongsTo(vehicle_type::class);
+        return $this->belongsTo(VehicleType::class, 'type_id');
     }
+    
 }
