@@ -1,7 +1,14 @@
 export const routes = [
     {
-        path: '/vehicle_list',
-        component: () => import("./components/ExampleComponent.vue")
+        path: '/home',
+        name: 'home',
+        component: () => import("./components/admin/AdminHome.vue")
     },
-    //{ path: '/bar', component: Bar }
+    {
+        path: '/vehicles',
+        name: 'vehicles',
+        component: () => import("./components/admin/vehicle/VehicleList.vue")
+    },
+
+
 ]

@@ -23,4 +23,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/vehicles', 'vehicleController@all_vehicle');
+Route::get('/{anypath}','HomeController@index')->where('path','.*');
