@@ -66,10 +66,10 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
+                  <router-link class="nav-link" :to="{name:'vehicle_type_list'}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Vehicle Type</p>
-                  </a>
+                  </router-link>
                 </li>
               </ul>
             </li>

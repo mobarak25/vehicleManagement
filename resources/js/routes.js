@@ -9,6 +9,11 @@ export const routes = [
         name: 'vehicles',
         component: () => import("./components/admin/vehicle/VehicleList.vue")
     },
+    {
+        path: '/vehicle_type_list',
+        name: 'vehicle_type_list',
+        component: () => import("./components/admin/vehicle/VehicleTypeList.vue")
+    },
 
 
 ]
