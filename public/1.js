@@ -85,6 +85,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Vehicle_Type_Component",
   data: function data() {
@@ -98,10 +104,19 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addType: function addType() {
       this.form.post("/add-vehicle-type").then(function (res) {
-        console.log(res);
+        $("#exampleModalCenter").modal("hide");
+        atoast.fire({
+          icon: "success",
+          title: "Vehicle added successfully"
+        });
       })["catch"](function (err) {
         console.log("Error");
       });
+    }
+  },
+  computed: {
+    getallType: function getallType() {
+      return this.$store.getters.getType;
     }
   }
 });
@@ -124,7 +139,38 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "pt-2" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row m-0 justify-content-center" }, [
+      _c("div", { staticClass: "col-lg-6" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-bordered table-striped",
+                attrs: { id: "example1" }
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("SL:")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.getallType))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Win 95+")])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -147,7 +193,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "form",
@@ -161,38 +207,50 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "modal-body" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Name")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.vehicle_type,
-                            expression: "form.vehicle_type"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.form.vehicle_type },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", [_vm._v("Type Name")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.vehicle_type,
+                              expression: "form.vehicle_type"
                             }
-                            _vm.$set(
-                              _vm.form,
-                              "vehicle_type",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form.errors.has("vehicle_type")
+                          },
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.form.vehicle_type },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "vehicle_type",
+                                $event.target.value
+                              )
+                            }
                           }
-                        }
-                      })
-                    ])
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form, field: "vehicle_type" }
+                        })
+                      ],
+                      1
+                    )
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(4)
                 ]
               )
             ])
@@ -207,68 +265,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row m-0 justify-content-center" }, [
-      _c("div", { staticClass: "col-lg-6" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title m-0 pt-2" }, [
-              _vm._v("Vehicle type list")
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary float-right",
-                attrs: {
-                  href: "#",
-                  "data-toggle": "modal",
-                  "data-target": "#exampleModalCenter"
-                }
-              },
-              [_vm._v("Add vehicle Type")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table table-bordered table-striped",
-                attrs: { id: "example1" }
-              },
-              [
-                _c("thead", [
-                  _c("tr", [
-                    _c("th", [_vm._v("SL:")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Vehicle Type Name")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Action")])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tbody", [
-                  _c("tr", [
-                    _c("td", [_vm._v("SL:")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Vehicle Type Name")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Win 95+")])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("SL:")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Vehicle Type Name")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Win 95+")])
-                  ])
-                ])
-              ]
-            )
-          ])
-        ])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title m-0 pt-2" }, [
+        _vm._v("Vehicle type list")
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary float-right",
+          attrs: {
+            href: "#",
+            "data-toggle": "modal",
+            "data-target": "#exampleModalCenter"
+          }
+        },
+        [_vm._v("Add vehicle Type")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("SL:")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Vehicle Type Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v("SL:")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Vehicle Type Name")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("Win 95+")])
     ])
   },
   function() {

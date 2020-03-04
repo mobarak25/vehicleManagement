@@ -25,7 +25,7 @@
               <tbody>
                 <tr>
                   <td>SL:</td>
-                  <td>Vehicle Type Name</td>
+                  <td>{{getallType}}</td>
                   <td>Win 95+</td>
                 </tr>
                 <tr>
@@ -60,8 +60,14 @@
           <form @submit.prevent="addType()">
             <div class="modal-body">
               <div class="form-group">
-                <label>Name</label>
-                <input v-model="form.vehicle_type" type="text" class="form-control" />
+                <label>Type Name</label>
+                <input
+                  v-model="form.vehicle_type"
+                  type="text"
+                  class="form-control"
+                  :class="{ 'is-invalid': form.errors.has('vehicle_type') }"
+                />
+                <has-error :form="form" field="vehicle_type"></has-error>
               </div>
             </div>
             <div class="modal-footer">
@@ -91,11 +97,20 @@ export default {
       this.form
         .post("/add-vehicle-type")
         .then(res => {
-          console.log(res);
+          $("#exampleModalCenter").modal("hide");
+          atoast.fire({
+            icon: "success",
+            title: "Vehicle added successfully"
+          });
         })
         .catch(err => {
           console.log("Error");
         });
+    }
+  },
+  computed: {
+    getallType() {
+      return this.$store.getters.getType;
     }
   }
 };

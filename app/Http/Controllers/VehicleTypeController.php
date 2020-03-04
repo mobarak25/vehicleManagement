@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class VehicleTypeController extends Controller
 {
     public function add_type(Request $request){
-        //return $request->all();
-        $this->$request->validate([
-            'vehicle_type' => 'required|min:5|max:255'
+        
+        $this->validate($request, [
+            'vehicle_type' => 'required',
         ]);
 
         $type = New VehicleType();
