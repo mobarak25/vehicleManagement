@@ -17,4 +17,13 @@ class VehicleTypeController extends Controller
         $type->vehicle_type = $request->vehicle_type;
         $type->save();
     }
+
+    public function all_type(){
+        $type = VehicleType::all();
+        return response()->Json([
+            'types' => $type
+        ],200);
+
+
+    }
 }

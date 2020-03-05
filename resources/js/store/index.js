@@ -1,3 +1,5 @@
+
+
 export default {
     state: {
         category: 'this is category name'
@@ -11,7 +13,9 @@ export default {
 
     },
     actions: {
-
+        allType() {
+            axios.get('/get-type')
+        }
     },
 
 }
