@@ -115,8 +115,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
-    getallType: function getallType() {
-      return this.$store.getters.getType;
+    getAllCategory: function getAllCategory() {
+      this.$store.dispatch("allCategory");
     }
   }
 });
@@ -158,7 +158,7 @@ var render = function() {
                   _c("tr", [
                     _c("td", [_vm._v("SL:")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.getallType))]),
+                    _c("td", [_vm._v(_vm._s(_vm.getAllCategory))]),
                     _vm._v(" "),
                     _c("td", [_vm._v("Win 95+")])
                   ]),

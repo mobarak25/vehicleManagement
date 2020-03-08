@@ -18,10 +18,10 @@ class VehicleTypeController extends Controller
         $type->save();
     }
 
-    public function all_type(){
-        $type = VehicleType::all();
+    public function all_category(){
+        $categories = VehicleType::all();
         return response()->Json([
-            'types' => $type
+            'categories' => $categories
         ],200);
 
 

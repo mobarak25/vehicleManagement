@@ -21,4 +21,4 @@ Auth::routes();
 Route::get('/{anypath}','HomeController@index')->where('path','.*');
 Route::post('/add-vehicle-type','VehicleTypeController@add_type');
 
-Route::get('/get-type','VehicleTypeController@all_type');
+Route::get('/category','VehicleTypeController@all_category');

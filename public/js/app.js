@@ -58327,7 +58327,7 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_2__);
@@ -58370,8 +58370,8 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
   routes: _routes_js__WEBPACK_IMPORTED_MODULE_5__["routes"],
-  mode: "history",
-  base: process.env.BASE_URL
+  mode: "history" //base: process.env.BASE_URL,
+
 }); //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('admin-main', __webpack_require__(/*! ./components/admin/AdminMaster.vue */ "./resources/js/components/admin/AdminMaster.vue")["default"]);
@@ -58383,7 +58383,6 @@ var app = new Vue({
   router: router,
   store: store
 });
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -58689,19 +58688,25 @@ var routes = [{
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    category: 'this is category name'
+    category: 'this is category'
   },
   getters: {
-    getType: function getType(state) {
+    getCategory: function getCategory(state) {
       return state.category;
     }
   },
-  mutations: {},
   actions: {
-    allType: function allType() {
-      axios.get('/get-type');
+    allCategory: function allCategory(state, payload) {
+      return axios.get('/category').then(function (response) {
+        // handle success
+        console.log(response.data);
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
     }
-  }
+  },
+  mutations: {}
 });
 
 /***/ }),

@@ -25,7 +25,7 @@
               <tbody>
                 <tr>
                   <td>SL:</td>
-                  <td>{{getallType}}</td>
+                  <td>{{getAllCategory}}</td>
                   <td>Win 95+</td>
                 </tr>
                 <tr>
@@ -109,8 +109,8 @@ export default {
     }
   },
   computed: {
-    getallType() {
-      return this.$store.getters.getType;
+    getAllCategory() {
+      this.$store.dispatch("allCategory");
     }
   }
 };
