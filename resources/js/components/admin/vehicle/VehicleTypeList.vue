@@ -25,7 +25,7 @@
               <tbody>
                 <tr>
                   <td>SL:</td>
-                  <td>{{getAllCategory}}</td>
+                  <td>getAllCategory</td>
                   <td>Win 95+</td>
                 </tr>
                 <tr>
@@ -35,6 +35,9 @@
                 </tr>
               </tbody>
             </table>
+            
+            <button v-on:click="getAllCategory(4)">Reduce Price</button>
+            
           </div>
         </div>
       </div>
@@ -106,12 +109,17 @@ export default {
         .catch(err => {
           console.log("Error");
         });
+    },
+    getAllCategory: function(amount){
+      console.log('aaaaaaaaaaaaaaaa');
+      // this.$store.commit('setCategoryData',amount,  { root: true });
+      //  this.$store.commit('reducePrice');
+        this.$store.dispatch('allCategoryItem', amount, { root: true })
     }
   },
   computed: {
-    getAllCategory() {
-      this.$store.dispatch("allCategory");
-    }
+    
+    
   }
 };
 </script>

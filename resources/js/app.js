@@ -2,14 +2,16 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 //=====load vuex
-import Vuex from 'vuex'
-Vue.use(Vuex)
+// import Vuex from 'vuex'
+// Vue.use(Vuex)
 
-import storeData from "./store/index"
+//import storeData from "./store/index"
 
-const store = new Vuex.Store(
-    storeData
-)
+import { store } from './store/store';
+
+// const store = new Vuex.Store(
+//     storeData
+// )
 
 //===vform
 import { Form, HasError, AlertError } from 'vform'
@@ -53,6 +55,6 @@ Vue.component('top-menu', require('./components/admin/TopMenu.vue').default);
 
 const app = new Vue({
     el: '#app',
+    store,
     router,
-    store
 });

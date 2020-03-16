@@ -91,6 +91,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Vehicle_Type_Component",
   data: function data() {
@@ -112,13 +115,17 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log("Error");
       });
+    },
+    getAllCategory: function getAllCategory(amount) {
+      console.log('aaaaaaaaaaaaaaaa'); // this.$store.commit('setCategoryData',amount,  { root: true });
+      //  this.$store.commit('reducePrice');
+
+      this.$store.dispatch('allCategoryItem', amount, {
+        root: true
+      });
     }
   },
-  computed: {
-    getAllCategory: function getAllCategory() {
-      this.$store.dispatch("allCategory");
-    }
-  }
+  computed: {}
 });
 
 /***/ }),
@@ -145,27 +152,18 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
+            _vm._m(1),
+            _vm._v(" "),
             _c(
-              "table",
+              "button",
               {
-                staticClass: "table table-bordered table-striped",
-                attrs: { id: "example1" }
+                on: {
+                  click: function($event) {
+                    return _vm.getAllCategory(4)
+                  }
+                }
               },
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("tbody", [
-                  _c("tr", [
-                    _c("td", [_vm._v("SL:")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.getAllCategory))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Win 95+")])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ])
-              ]
+              [_vm._v("Reduce Price")]
             )
           ])
         ])
@@ -193,7 +191,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "form",
@@ -250,7 +248,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _vm._m(3)
                 ]
               )
             ])
@@ -288,27 +286,42 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("SL:")]),
+    return _c(
+      "table",
+      {
+        staticClass: "table table-bordered table-striped",
+        attrs: { id: "example1" }
+      },
+      [
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("SL:")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Vehicle Type Name")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Action")])
+          ])
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vehicle Type Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("SL:")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("Vehicle Type Name")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("Win 95+")])
-    ])
+        _c("tbody", [
+          _c("tr", [
+            _c("td", [_vm._v("SL:")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("getAllCategory")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Win 95+")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("SL:")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Vehicle Type Name")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Win 95+")])
+          ])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
