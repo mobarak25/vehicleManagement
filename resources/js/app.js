@@ -1,17 +1,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-//=====load vuex
-// import Vuex from 'vuex'
-// Vue.use(Vuex)
 
-//import storeData from "./store/index"
 
 import { store } from './store/store';
 
-// const store = new Vuex.Store(
-//     storeData
-// )
+
 
 //===vform
 import { Form, HasError, AlertError } from 'vform'

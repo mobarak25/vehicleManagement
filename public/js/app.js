@@ -58334,15 +58334,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes.js */ "./resources/js/routes.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); //=====load vuex
-// import Vuex from 'vuex'
-// Vue.use(Vuex)
-//import storeData from "./store/index"
-
- // const store = new Vuex.Store(
-//     storeData
-// )
-//===vform
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+ //===vform
 
 
 Vue.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
@@ -58690,50 +58683,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_defineProperty({
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   strict: true,
   state: {
-    category: 'this is category',
-    count: 0,
-    axiosDataObj: {}
-  },
-  getters: {
-    getCategory: function getCategory(state) {
-      return state.category;
-    }
+    //==Data
+    allCategoryObj: {}
   },
   mutations: {
+    /*==Commit + track state changes (by using vue dev tools, we can do time travel debugging,
+    and we can roleback a mutation,with reverse the state it's previous value )*/
     setCategoryData: function setCategoryData(state, payload) {
-      state.count++; // state.axiosDataObj.item = 'asdfasdf';
-      // axios.get('/category')
-      //     .then((response) => {
-      //         // handle success
-      //          state.axiosDataObj = response.data;
-      //         console.log(response.data);
-      //     })
-      //     .catch(function (error) {
-      //         // handle error
-      //         console.log(error);
-      //     })
+      return state.allCategoryObj = payload;
     }
   },
   actions: {
-    allCategoryItem: function allCategoryItem(context, payload) {
-      console.log('vvvvvvvvv');
-      setTimeout(function () {
-        // reach out for data
-        context.commit('setCategoryData', payload, {
-          root: true
-        });
-      }, 2000);
+    //==Methods
+    allCategoryItem: function allCategoryItem(context) {
+      axios.get('/category').then(function (response) {
+        context.commit('setCategoryData', response.data.categories);
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    }
+  },
+  getters: {
+    //==Computed
+    getCategory: function getCategory(state) {
+      return state.allCategoryObj;
     }
   }
-}, "mutations", {}));
+});
 
 /***/ }),
 

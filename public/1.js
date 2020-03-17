@@ -87,13 +87,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Vehicle_Type_Component",
   data: function data() {
@@ -106,26 +99,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addType: function addType() {
+      var _this = this;
+
       this.form.post("/add-vehicle-type").then(function (res) {
         $("#exampleModalCenter").modal("hide");
         atoast.fire({
           icon: "success",
           title: "Vehicle added successfully"
         });
+      }).then(function (res) {
+        _this.$store.dispatch('allCategoryItem', null);
       })["catch"](function (err) {
         console.log("Error");
       });
-    },
-    getAllCategory: function getAllCategory(amount) {
-      console.log('aaaaaaaaaaaaaaaa'); // this.$store.commit('setCategoryData',amount,  { root: true });
-      //  this.$store.commit('reducePrice');
-
-      this.$store.dispatch('allCategoryItem', amount, {
-        root: true
-      });
     }
   },
-  computed: {}
+  computed: {
+    getAllCategory: function getAllCategory() {
+      return this.$store.getters.getCategory;
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('allCategoryItem', null);
+  }
 });
 
 /***/ }),
@@ -152,18 +148,29 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _vm._m(1),
-            _vm._v(" "),
             _c(
-              "button",
+              "table",
               {
-                on: {
-                  click: function($event) {
-                    return _vm.getAllCategory(4)
-                  }
-                }
+                staticClass: "table table-bordered table-striped",
+                attrs: { id: "example1" }
               },
-              [_vm._v("Reduce Price")]
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.getAllCategory, function(category, index) {
+                    return _c("tr", { key: index }, [
+                      _c("td", [_vm._v("SL: ")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(category.vehicle_type))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("Edit | Delete")])
+                    ])
+                  }),
+                  0
+                )
+              ]
             )
           ])
         ])
@@ -286,42 +293,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "table",
-      {
-        staticClass: "table table-bordered table-striped",
-        attrs: { id: "example1" }
-      },
-      [
-        _c("thead", [
-          _c("tr", [
-            _c("th", [_vm._v("SL:")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Vehicle Type Name")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Action")])
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("SL:")]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("SL:")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("getAllCategory")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Win 95+")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("SL:")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Vehicle Type Name")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Win 95+")])
-          ])
-        ])
-      ]
-    )
+        _c("th", [_vm._v("Vehicle Type Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
+      ])
+    ])
   },
   function() {
     var _vm = this

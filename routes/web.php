@@ -14,11 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
-
-
-Route::get('/{anypath}','HomeController@index')->where('path','.*');
 Route::post('/add-vehicle-type','VehicleTypeController@add_type');
-
 Route::get('/category','VehicleTypeController@all_category');
+Route::get('/{anypath}','HomeController@index')->where('path','.*');

@@ -1,48 +1,38 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 Vue.use(Vuex);
+
 export const store = new Vuex.Store({
     strict: true,
-    state: {
-        category: 'this is category',
-        count:0,
-        axiosDataObj: {}
+    state: {//==Data
+        allCategoryObj: {}
     },
 
-    getters: {
-        getCategory(state) {
-            return state.category;
-        }
-    },
-    mutations: {
+    mutations: {/*==Commit + track state changes (by using vue dev tools, we can do time travel debugging,
+        and we can roleback a mutation,with reverse the state it's previous value )*/
         setCategoryData (state,payload){
-            state.count++;
-            // state.axiosDataObj.item = 'asdfasdf';
-            // axios.get('/category')
-            //     .then((response) => {
-            //         // handle success
-            //          state.axiosDataObj = response.data;
-            //         console.log(response.data);
-            //     })
-            //     .catch(function (error) {
-            //         // handle error
-            //         console.log(error);
-            //     })
+            return state.allCategoryObj = payload;
+            
+        }
+    },
+    
+    actions: {//==Methods
+        allCategoryItem: (context) => {
+            axios.get('/category')
+            .then((response) => {
+                context.commit('setCategoryData',response.data.categories);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
         }
     },
 
-    actions: {
-        allCategoryItem: (context,payload) => {
-            console.log('vvvvvvvvv');
-            setTimeout(function() { // reach out for data
-                context.commit('setCategoryData',payload,  { root: true });
-            }, 2000);
+    getters: {//==Computed
+        getCategory(state){
+            return state.allCategoryObj
         }
     },
-
-    mutations: {
-
-    },
-
 
 });

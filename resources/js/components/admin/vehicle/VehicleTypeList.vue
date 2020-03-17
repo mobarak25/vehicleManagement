@@ -23,20 +23,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>SL:</td>
-                  <td>getAllCategory</td>
-                  <td>Win 95+</td>
-                </tr>
-                <tr>
-                  <td>SL:</td>
-                  <td>Vehicle Type Name</td>
-                  <td>Win 95+</td>
+                <tr v-for="(category,index) in getAllCategory" :key="index">
+                  <td>SL: </td>
+                  <td>{{category.vehicle_type}}</td>
+                  <td>Edit | Delete</td>
                 </tr>
               </tbody>
             </table>
-            
-            <button v-on:click="getAllCategory(4)">Reduce Price</button>
             
           </div>
         </div>
@@ -106,21 +99,26 @@ export default {
             title: "Vehicle added successfully"
           });
         })
+        .then(res=>{
+            this.$store.dispatch('allCategoryItem', null)
+        })
         .catch(err => {
           console.log("Error");
         });
     },
-    getAllCategory: function(amount){
-      console.log('aaaaaaaaaaaaaaaa');
-      // this.$store.commit('setCategoryData',amount,  { root: true });
-      //  this.$store.commit('reducePrice');
-        this.$store.dispatch('allCategoryItem', amount, { root: true })
-    }
+    
   },
+
   computed: {
+    getAllCategory(){
+      return this.$store.getters.getCategory;
+    }
     
-    
+  },
+  mounted(){
+    this.$store.dispatch('allCategoryItem', null)
   }
+
 };
 </script>
 
