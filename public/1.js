@@ -87,6 +87,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Vehicle_Type_Component",
   data: function data() {
@@ -102,16 +103,37 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.form.post("/add-vehicle-type").then(function (res) {
-        $("#exampleModalCenter").modal("hide");
         atoast.fire({
           icon: "success",
           title: "Vehicle added successfully"
         });
       }).then(function (res) {
-        _this.$store.dispatch('allCategoryItem', null);
+        _this.$store.dispatch("allCategoryItem");
+
+        _this.form.reset();
+
+        $("#exampleModalCenter").modal("hide");
       })["catch"](function (err) {
         console.log("Error");
       });
+    },
+    deleteType: function deleteType(id) {
+      var _this2 = this;
+
+      var confirm = confirm("Are you sure, Want to delete !");
+
+      if (confirm == true) {
+        axios.get("/delete-type/" + id).then(function (res) {
+          _this2.$store.dispatch("allCategoryItem");
+
+          atoast.fire({
+            icon: "success",
+            title: "Vehicle deleted successfully"
+          });
+        })["catch"](function (res) {
+          console.log("error");
+        });
+      }
     }
   },
   computed: {
@@ -120,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.$store.dispatch('allCategoryItem', null);
+    this.$store.dispatch("allCategoryItem");
   }
 });
 
@@ -161,11 +183,28 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.getAllCategory, function(category, index) {
                     return _c("tr", { key: index }, [
-                      _c("td", [_vm._v("SL: ")]),
+                      _c("td", [_vm._v("SL:")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(category.vehicle_type))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Edit | Delete")])
+                      _c("td", [
+                        _vm._v(
+                          "\n                  Edit |\n                  "
+                        ),
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.deleteType(category.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ])
                     ])
                   }),
                   0
@@ -203,6 +242,7 @@ var render = function() {
               _c(
                 "form",
                 {
+                  ref: "form",
                   on: {
                     submit: function($event) {
                       $event.preventDefault()

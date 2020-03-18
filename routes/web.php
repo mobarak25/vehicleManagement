@@ -16,5 +16,17 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::post('/add-vehicle-type','VehicleTypeController@add_type');
+
 Route::get('/category','VehicleTypeController@all_category');
+Route::get('/delete-type/{id}','VehicleTypeController@delete_type');
+
+
+
+
+
+
+
+
+
+
 Route::get('/{anypath}','HomeController@index')->where('path','.*');

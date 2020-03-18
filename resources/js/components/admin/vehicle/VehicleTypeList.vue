@@ -24,13 +24,15 @@
               </thead>
               <tbody>
                 <tr v-for="(category,index) in getAllCategory" :key="index">
-                  <td>SL: </td>
+                  <td>SL:</td>
                   <td>{{category.vehicle_type}}</td>
-                  <td>Edit | Delete</td>
+                  <td>
+                    Edit |
+                    <a href="#" @click.prevent="deleteType(category.id)">Delete</a>
+                  </td>
                 </tr>
               </tbody>
             </table>
-            
           </div>
         </div>
       </div>
@@ -53,7 +55,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form @submit.prevent="addType()">
+          <form @submit.prevent="addType()" ref="form">
             <div class="modal-body">
               <div class="form-group">
                 <label>Type Name</label>
@@ -75,7 +77,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "Vehicle_Type_Component",
@@ -93,32 +94,48 @@ export default {
       this.form
         .post("/add-vehicle-type")
         .then(res => {
-          $("#exampleModalCenter").modal("hide");
           atoast.fire({
             icon: "success",
             title: "Vehicle added successfully"
           });
         })
-        .then(res=>{
-            this.$store.dispatch('allCategoryItem', null)
+        .then(res => {
+          this.$store.dispatch("allCategoryItem");
+          this.form.reset();
+          $("#exampleModalCenter").modal("hide");
         })
         .catch(err => {
           console.log("Error");
         });
     },
-    
+
+    deleteType(id) {
+      var confirm = confirm("Are you sure, Want to delete !");
+      if (confirm == true) {
+        axios
+          .get("/delete-type/" + id)
+          .then(res => {
+            this.$store.dispatch("allCategoryItem");
+            atoast.fire({
+              icon: "success",
+              title: "Vehicle deleted successfully"
+            });
+          })
+          .catch(res => {
+            console.log("error");
+          });
+      }
+    }
   },
 
   computed: {
-    getAllCategory(){
+    getAllCategory() {
       return this.$store.getters.getCategory;
     }
-    
   },
-  mounted(){
-    this.$store.dispatch('allCategoryItem', null)
+  mounted() {
+    this.$store.dispatch("allCategoryItem");
   }
-
 };
 </script>
 

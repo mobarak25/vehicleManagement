@@ -23,7 +23,11 @@ class VehicleTypeController extends Controller
         return response()->Json([
             'categories' => $categories
         ],200);
-
-
     }
+    public function delete_type($id){
+        $categories = VehicleType::find($id);
+        $categories->delete();
+    }
+
+
 }
