@@ -27,8 +27,18 @@
                   <td>SL:</td>
                   <td>{{category.vehicle_type}}</td>
                   <td>
-                    Edit |
-                    <a href="#" @click.prevent="deleteType(category.id)">Delete</a>
+                    <a
+                      class="btn btn-outline-info btn-xs"
+                      href="#"
+                      @click.prevent="editType(category.id)"
+                      data-toggle="modal"
+                      data-target="#exampleModalCenter"
+                    >Edit</a> |
+                    <a
+                      class="btn btn-outline-danger btn-xs"
+                      href="#"
+                      @click.prevent="deleteType(category.id)"
+                    >Delete</a>
                   </td>
                 </tr>
               </tbody>
@@ -110,8 +120,8 @@ export default {
     },
 
     deleteType(id) {
-      var confirm = confirm("Are you sure, Want to delete !");
-      if (confirm == true) {
+      var permissiom = confirm("Are you sure, want to delete!");
+      if (permissiom == !false) {
         axios
           .get("/delete-type/" + id)
           .then(res => {
@@ -125,6 +135,10 @@ export default {
             console.log("error");
           });
       }
+    },
+
+    editType(id) {
+      alert("gg");
     }
   },
 

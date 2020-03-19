@@ -88,6 +88,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Vehicle_Type_Component",
   data: function data() {
@@ -120,9 +130,9 @@ __webpack_require__.r(__webpack_exports__);
     deleteType: function deleteType(id) {
       var _this2 = this;
 
-      var confirm = confirm("Are you sure, Want to delete !");
+      var permissiom = confirm("Are you sure, want to delete!");
 
-      if (confirm == true) {
+      if (permissiom == !false) {
         axios.get("/delete-type/" + id).then(function (res) {
           _this2.$store.dispatch("allCategoryItem");
 
@@ -134,6 +144,9 @@ __webpack_require__.r(__webpack_exports__);
           console.log("error");
         });
       }
+    },
+    editType: function editType(id) {
+      alert("gg");
     }
   },
   computed: {
@@ -188,12 +201,29 @@ var render = function() {
                       _c("td", [_vm._v(_vm._s(category.vehicle_type))]),
                       _vm._v(" "),
                       _c("td", [
-                        _vm._v(
-                          "\n                  Edit |\n                  "
-                        ),
                         _c(
                           "a",
                           {
+                            staticClass: "btn btn-outline-info btn-xs",
+                            attrs: {
+                              href: "#",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModalCenter"
+                            },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.editType(category.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" |\n                  "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-outline-danger btn-xs",
                             attrs: { href: "#" },
                             on: {
                               click: function($event) {
