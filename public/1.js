@@ -95,9 +95,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Vehicle_Type_Component",
   data: function data() {
@@ -144,9 +141,6 @@ __webpack_require__.r(__webpack_exports__);
           console.log("error");
         });
       }
-    },
-    editType: function editType(id) {
-      alert("gg");
     }
   },
   computed: {
@@ -200,41 +194,40 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(category.vehicle_type))]),
                       _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "btn btn-outline-info btn-xs",
-                            attrs: {
-                              href: "#",
-                              "data-toggle": "modal",
-                              "data-target": "#exampleModalCenter"
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-outline-info btn-xs",
+                              attrs: {
+                                to: {
+                                  name: "vehicle_type_edit",
+                                  params: { id: category.id }
+                                }
+                              }
                             },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.editType(category.id)
+                            [_vm._v("Edit")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-outline-danger btn-xs",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deleteType(category.id)
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("Edit")]
-                        ),
-                        _vm._v(" |\n                  "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "btn btn-outline-danger btn-xs",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.deleteType(category.id)
-                              }
-                            }
-                          },
-                          [_vm._v("Delete")]
-                        )
-                      ])
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ],
+                        1
+                      )
                     ])
                   }),
                   0

@@ -58668,6 +58668,12 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/admin/vehicle/VehicleTypeList.vue */ "./resources/js/components/admin/vehicle/VehicleTypeList.vue"));
   }
+}, {
+  path: '/vehicle_type_edit',
+  name: 'vehicle_type_edit',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/admin/vehicle/VehicleTypeEdit.vue */ "./resources/js/components/admin/vehicle/VehicleTypeEdit.vue"));
+  }
 }];
 
 /***/ }),

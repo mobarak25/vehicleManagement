@@ -10,27 +10,27 @@ export const store = new Vuex.Store({
 
     mutations: {/*==Commit + track state changes (by using vue dev tools, we can do time travel debugging,
         and we can roleback a mutation,with reverse the state it's previous value )*/
-        setCategoryData (state,payload){
+        setCategoryData(state, payload) {
             return state.allCategoryObj = payload;
-            
+
         }
     },
-    
+
     actions: {//==Methods
         allCategoryItem: (context) => {
             axios.get('/category')
-            .then((response) => {
-                context.commit('setCategoryData',response.data.categories);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
+                .then((response) => {
+                    context.commit('setCategoryData', response.data.categories);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
         }
     },
 
     getters: {//==Computed
-        getCategory(state){
+        getCategory(state) {
             return state.allCategoryObj
         }
     },

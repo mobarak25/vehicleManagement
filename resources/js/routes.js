@@ -14,6 +14,11 @@ export const routes = [
         name: 'vehicle_type_list',
         component: () => import("./components/admin/vehicle/VehicleTypeList.vue")
     },
+    {
+        path: '/vehicle_type_edit',
+        name: 'vehicle_type_edit',
+        component: () => import("./components/admin/vehicle/VehicleTypeEdit.vue")
+    },
 
 
 ]

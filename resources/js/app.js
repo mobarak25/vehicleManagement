@@ -36,7 +36,7 @@ import { routes } from "./routes.js";
 const router = new VueRouter({
     routes,
     mode: "history",
-    //base: process.env.BASE_URL,
+    base: process.env.BASE_URL,
 })
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
